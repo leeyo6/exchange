@@ -56,6 +56,9 @@ public class XSectionMesher extends Application {
     double mouseDeltaX;
     double mouseDeltaY;
     
+    //Here to Declare Scene
+    Scene sceneView;
+    
     //   private void buildScene() {
     //       root.getChildren().add(world);
     //   }
@@ -287,16 +290,20 @@ public class XSectionMesher extends Application {
         buildAxes();
         buildMolecule();
 
-        Scene scene = new Scene(root, 1024, 768, true);
-        scene.setFill(Color.GREY);
-        handleKeyboard(scene, world);
-        handleMouse(scene, world);
+        sceneView = new Scene(root, 1024, 768, true);
+        sceneView.setFill(Color.GREY);
+        handleKeyboard(sceneView, world);
+        handleMouse(sceneView, world);
 
         primaryStage.setTitle("Molecule Sample Application");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(sceneView);
         primaryStage.show();
 
-        scene.setCamera(camera);
+        sceneView.setCamera(camera);
+    }
+    
+    public Scene getView(){
+        return sceneView;
     }
 
     /**
@@ -310,5 +317,5 @@ public class XSectionMesher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+ 
 }
