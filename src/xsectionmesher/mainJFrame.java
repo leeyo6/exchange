@@ -28,8 +28,12 @@ public class mainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3DView = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jPanelControls = new javax.swing.JPanel();
+        jToolBar = new javax.swing.JToolBar();
+        jButtonOpen = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+        jButtonFitAll = new javax.swing.JButton();
+        jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemFileOpen = new javax.swing.JMenuItem();
         jMenuItemFileSave = new javax.swing.JMenuItem();
@@ -38,6 +42,8 @@ public class mainJFrame extends javax.swing.JFrame {
         jMenuEdit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("XSA - Cross Section Analysis Tool");
+        setPreferredSize(new java.awt.Dimension(1000, 1200));
 
         javax.swing.GroupLayout jPanel3DViewLayout = new javax.swing.GroupLayout(jPanel3DView);
         jPanel3DView.setLayout(jPanel3DViewLayout);
@@ -47,10 +53,70 @@ public class mainJFrame extends javax.swing.JFrame {
         );
         jPanel3DViewLayout.setVerticalGroup(
             jPanel3DViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
+            .addGap(0, 72, Short.MAX_VALUE)
         );
 
-        jToolBar1.setRollover(true);
+        jToolBar.setRollover(true);
+        jToolBar.setMaximumSize(new java.awt.Dimension(500000, 500000));
+        jToolBar.setMinimumSize(new java.awt.Dimension(400, 34));
+        jToolBar.setPreferredSize(new java.awt.Dimension(400, 34));
+        jToolBar.setVerifyInputWhenFocusTarget(false);
+
+        jButtonOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/open.png"))); // NOI18N
+        jButtonOpen.setFocusable(false);
+        jButtonOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonOpen.setMaximumSize(new java.awt.Dimension(32, 28));
+        jButtonOpen.setMinimumSize(new java.awt.Dimension(32, 28));
+        jButtonOpen.setPreferredSize(new java.awt.Dimension(32, 28));
+        jButtonOpen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonOpen);
+
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/save.png"))); // NOI18N
+        jButtonSave.setFocusable(false);
+        jButtonSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonSave.setMaximumSize(new java.awt.Dimension(35, 32));
+        jButtonSave.setMinimumSize(new java.awt.Dimension(35, 32));
+        jButtonSave.setPreferredSize(new java.awt.Dimension(35, 32));
+        jButtonSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonSave);
+
+        jButtonFitAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fitAll.png"))); // NOI18N
+        jButtonFitAll.setFocusable(false);
+        jButtonFitAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonFitAll.setMaximumSize(new java.awt.Dimension(32, 28));
+        jButtonFitAll.setMinimumSize(new java.awt.Dimension(32, 28));
+        jButtonFitAll.setPreferredSize(new java.awt.Dimension(32, 28));
+        jButtonFitAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFitAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFitAllActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonFitAll);
+
+        javax.swing.GroupLayout jPanelControlsLayout = new javax.swing.GroupLayout(jPanelControls);
+        jPanelControls.setLayout(jPanelControlsLayout);
+        jPanelControlsLayout.setHorizontalGroup(
+            jPanelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControlsLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(220, Short.MAX_VALUE))
+        );
+        jPanelControlsLayout.setVerticalGroup(
+            jPanelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         jMenuFile.setText("File");
 
@@ -71,26 +137,29 @@ public class mainJFrame extends javax.swing.JFrame {
         jMenuItemFileImport.setText("Import...");
         jMenuFile.add(jMenuItemFileImport);
 
-        jMenuBar1.add(jMenuFile);
+        jMenuBar.add(jMenuFile);
 
         jMenuEdit.setText("Edit");
-        jMenuBar1.add(jMenuEdit);
+        jMenuBar.add(jMenuEdit);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3DView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3DView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3DView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3DView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -100,18 +169,26 @@ public class mainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemFileSaveActionPerformed
 
+    private void jButtonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOpenActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonFitAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFitAllActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonFitAllActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        /* Set look and feel */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -125,7 +202,6 @@ public class mainJFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(mainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -136,7 +212,10 @@ public class mainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton jButtonFitAll;
+    private javax.swing.JButton jButtonOpen;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuEdit;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemFileImport;
@@ -144,6 +223,7 @@ public class mainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFileSave;
     private javax.swing.JMenuItem jMenuItemFileSaveAs;
     private javax.swing.JPanel jPanel3DView;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPanel jPanelControls;
+    private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
 }
