@@ -19,6 +19,9 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.shape.Shape3D;
+import javax.media.j3d.LineArray;
+import javax.vecmath.Point3f;
 
 /**
  *
@@ -290,6 +293,7 @@ public class XSectionMesher extends Application {
         buildAxes();
         buildMolecule();
 
+        
         sceneView = new Scene(root, 1024, 768, true);
         sceneView.setFill(Color.GREY);
         handleKeyboard(sceneView, world);
