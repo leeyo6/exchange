@@ -13,12 +13,14 @@ import javax.media.j3d.Appearance;
 import javax.media.j3d.GeometryArray;
 import javax.media.j3d.LineStripArray;
 import javax.media.j3d.Shape3D;
+import javax.media.j3d.VirtualUniverse;
 import javax.swing.JPanel;
 import javax.vecmath.Point3d;
 
-
 public class JPanel3D extends JPanel{
 
+    public SimpleUniverse universe;
+    public BranchGroup branchGroup;
   public JPanel3D(){//constructor
     setLayout(new BorderLayout());
 
@@ -40,25 +42,16 @@ public class JPanel3D extends JPanel{
     //Create an empty Java 3D universe and associate it 
     // with the Canvas3D object in the CENTER of the
     // Frame.
-    SimpleUniverse universe = new SimpleUniverse(canvas);
+    universe = new SimpleUniverse(canvas);
 
     //Set the apparent position of the viewer's eye.
     universe.getViewingPlatform().
                               setNominalViewingTransform();
 
     //Put a visible object in the universe
-    BranchGroup branchGroup = new BranchGroup();
+    branchGroup = new BranchGroup();
     
-    Shape3D shape = plotLines();
-    //branchGroup.addChild(new ColorCube(0.2));
-    branchGroup.addChild(shape);
-
-    universe.addBranchGraph(branchGroup);
-
-    //Set the Frame size and title and make it all visible.
-    setSize(475,475);
-    //setTitle("Copyright 2007, R.G.Baldwin");
-    setVisible(true);
+    
 
     //This listener is used to terminate the program when
     // the user clicks the X in the upper-right corner of
@@ -72,16 +65,29 @@ public class JPanel3D extends JPanel{
     );//end addWindowListener
   }//end constructor
   //-----------------------------------------------------//
-  
-  public Shape3D plotLines(){
-      Point3d coords[] = new Point3d[4];
+
+    public void plotData(Point3d coords[]) {
+        Shape3D shape = plotLines(coords);
+        //branchGroup.addChild(new ColorCube(0.2));\
+        branchGroup.removeAllChildren();
+        branchGroup.addChild(shape);
+
+        universe.addBranchGraph(branchGroup);
+
+        //Set the Frame size and title and make it all visible.
+        //setSize(475, 475);
+        //setTitle("Copyright 2007, R.G.Baldwin");
+        setVisible(true);
+    }
+  public Shape3D plotLines(Point3d coords[]){
+      //Point3d coords[] = new Point3d[4];
 
       Appearance app=new Appearance();
 
-        coords[0] = new Point3d(-0.5d, -0.2d, 0.1d);
-        coords[1] = new Point3d(-0.2d, 0.1d, 0.0d);
-        coords[2] = new Point3d(0.2d, -0.3d, 0.1d);
-        coords[3] = new Point3d(-0.5d, -0.2d, 0.1d);
+       // coords[0] = new Point3d(-0.5d, -0.2d, 0.1d);
+       // coords[1] = new Point3d(-0.2d, 0.1d, 0.0d);
+       // coords[2] = new Point3d(0.2d, -0.3d, 0.1d);
+       // coords[3] = new Point3d(-0.5d, -0.2d, 0.1d);
 
         int vertexCounts[] = {4};
 
